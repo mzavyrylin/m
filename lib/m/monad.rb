@@ -17,10 +17,6 @@ class Monad
   alias :>= :bind
   alias :>> :bind
 
-  def call(value)
-    self.class.unit(value)
-  end
-
   def ==(other)
     return false unless other.is_a?(self.class)
     @value == other.fetch
