@@ -1,6 +1,7 @@
 # M
 
-TODO: Write a gem description
+A basic monads implemented in Ruby.
+Currently only the `Either` monad class is available.
 
 ## Installation
 
@@ -18,7 +19,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To inject all defined classes and methods into global namespace you should do
+```ruby
+require "m/all"
+```
 
 ## Contributing
 
