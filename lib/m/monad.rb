@@ -43,7 +43,7 @@ module M
     end
 
     def to_s
-      "#{self.class.name}(#{self.fetch.inspect})"
+      "#{self.class.name.split("::").last}(#{self.fetch.inspect})"
     end
     alias :inspect :to_s
 
