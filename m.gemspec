@@ -5,8 +5,8 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 Gem::Specification.new do |spec|
   spec.name          = "m"
   spec.version       = "0.0.1"
-  spec.authors       = ["m.zavyrylin"]
-  spec.email         = ["m.zavyrylin@fun-box.ru"]
+  spec.authors       = ["Max Zavyrylin"]
+  spec.email         = ["vandalsafe@gmail.com"]
   spec.summary       = %q{A fistful of monads for Ruby}
   spec.description   = %q{A fistful of monads for Ruby}
   spec.homepage      = ""
