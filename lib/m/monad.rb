@@ -6,11 +6,13 @@ class Monad
 
   # join :: Monad m => m (m a) -> m a
   def self.join(value)
-    value.fetch
+    result = value.fetch
+    return result if result.is_a?(self)
+    fail "Given value must wrap a Monad"
   end
 
   def self.fail(value)
-    new(value)
+    raise RuntimeError.new(value)
   end
 
   def initialize(value)
