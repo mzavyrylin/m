@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Monad do
+describe M::Monad do
   it_behaves_like "a monad"
 
   context "default implementation" do

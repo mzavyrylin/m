@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Either do
+describe M::Either do
   it_behaves_like "a monad"
 
   describe "shortcut methods" do
