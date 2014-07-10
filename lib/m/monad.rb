@@ -1,6 +1,16 @@
 class Monad
-  def self.unit(value)
-    fail NotImplementedError
+  # return :: a -> m a
+  def self.return(value)
+    new(value)
+  end
+
+  # join :: Monad m => m (m a) -> m a
+  def self.join(value)
+    value.fetch
+  end
+
+  def self.fail(value)
+    new(value)
   end
 
   def initialize(value)
@@ -11,11 +21,18 @@ class Monad
     @value
   end
 
+  # fmap :: (a -> b) -> r a -> r b
+  def fmap(fn=nil, &block)
+    self.class.return( call(fn || block) )
+  rescue => e
+    self.class.fail(e)
+  end
+
+  # (>>=) :: (Monad m) => m a -> (a -> m b) -> m b
   def bind(fn=nil, &block)
-    fail NotImplementedError
+    self.class.join( fmap(fn, &block) )
   end
   alias :>= :bind
-  alias :>> :bind
 
   def ==(other)
     return false unless other.is_a?(self.class)
@@ -23,7 +40,13 @@ class Monad
   end
 
   def to_s
-    klass_name = self.class.name.split("::").last
-    "#{klass_name}(#{self.fetch.inspect})"
+    "#{self.class.name}(#{self.fetch.inspect})"
+  end
+  alias :inspect :to_s
+
+  private
+
+  def call(callee)
+    callee.call(@value)
   end
 end
