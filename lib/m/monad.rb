@@ -1,6 +1,6 @@
 module M
   class Monad
-    # return :: a -> m a
+    # return :: Monad m => a -> m a
     def self.return(value)
       new(value)
     end
@@ -24,14 +24,14 @@ module M
       @value
     end
 
-    # fmap :: (a -> b) -> r a -> r b
+    # fmap :: Functor f => (a -> b) -> f a -> f b
     def fmap(fn=nil, &block)
       self.class.return( call(fn || block) )
     rescue => e
       self.class.fail(e)
     end
 
-    # (>>=) :: (Monad m) => m a -> (a -> m b) -> m b
+    # (>>=) :: Monad m => m a -> (a -> m b) -> m b
     def bind(fn=nil, &block)
       self.class.join( fmap(fn, &block) )
     end
