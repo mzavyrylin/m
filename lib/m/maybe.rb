@@ -15,9 +15,9 @@ module M
 
   class Nothing < Maybe
     class << self
-      def bind(_); self; end
-      def fmap(_); self; end
-      def >=(_); self; end
+      def bind(fn=nil, &block); self; end
+      def fmap(fn=nil, &block); self; end
+      def >=(fn=nil, &block); self; end
 
       def to_s(*)
         "Nothing"
