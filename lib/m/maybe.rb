@@ -6,7 +6,6 @@ module M
     end
 
     def self.join(value)
-      puts value.inspect
       return Nothing if value == Nothing
       super
     end
